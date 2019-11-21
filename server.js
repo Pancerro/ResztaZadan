@@ -14,6 +14,3 @@ app.get('/*', function(req, res) {
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
-app.get('*', function(req, res) {
-    res.sendfile('src\app\users\dashboard\dashboard.component.html'); // load our index.html file
-});
