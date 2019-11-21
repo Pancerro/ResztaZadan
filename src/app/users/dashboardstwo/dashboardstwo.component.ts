@@ -82,5 +82,8 @@ function dragElement(elmnt) {
     this.authService.logout()
       .then(() => this.router.navigate(['/login']));
   }
+  dashboard(){
+    this.router.navigate(['/dashboard']);
+  }
   
 }
