@@ -1,0 +1,91 @@
+1.select * from Post;
+2.select distinct author from Post;
+3.select * from Post
+where author='Pancerro';
+4. select * from Post
+where author='Pancerro' and title='Afera jest';
+5. select * from Post
+where not author='Pancerro';
+6. select * from Post
+where author='Pancerro' or title='Afera jest';
+7. select * from Post
+order by author;
+8.INSERT INTO Post
+VALUES ('Pancerro','Afery nie ma','Text','20.11.2019','21.11.2019');
+9. select * from Post
+where author is null;
+10. select * from Post
+where author is not null;
+11. update post
+set title='Pancerro Post'
+where author='Pancerro';
+12. delete from Post
+where author='Pancerro';
+13. select top 3 * from Post;
+14. ALTER TABLE Post
+ADD value int;
+INSERT INTO Post
+VALUES ('Pancerro','Afery nie ma','Text','22.11.2019','23.11.2019','20');
+select MIN(value) as MinValue from Post;
+15. select MAX(value) as MaxValue from Post;
+16. select SUM(value) from Post;
+17. select AVG(value) from Post;
+18. select COUNT(author) from Post;
+19. select * from Post
+where author like 'a%';
+20. select * from Post
+where author Like '[!bsp]%;
+21. select  * from Post
+where author IN ('Pancerro','Adele');
+22. select * from Post
+where Price BETWEEN 10 AND 30;
+23. select author as AuthorPost from Post;
+24. CREATE TABLE AuthorData
+(
+    ID INT,
+    author VARCHAR(200),
+    name VARCHAR(200),
+    surname VARCHAR(200),
+    email VARCHAR(200)
+);
+INSERT INTO AuthorData
+VALUES ('1','Pancerro','Adrian','Ławecki','pancerro@gmail.com');
+select Post.author, AuthorData.author from Post
+INNER JOIN AuthorData ON Post.author=AuthorData.author;
+25. select Post.author, AuthorData.author from Post
+LEFT JOIN AuthorData ON Post.author=AuthorData.author;
+26. select Post.author, AuthorData.author from Post
+RIGHT JOIN AuthorData ON Post.author=AuthorData.author;
+27. select Post.author, AuthorData.author from Post
+FULL OUTER JOIN AuthorData ON Post.author=AuthorData.author
+ORDER BY Post.Author;
+28. CREATE TABLE AuthorDataTwo
+(
+    ID INT,
+    author VARCHAR(200),
+    name VARCHAR(200),
+    surname VARCHAR(200),
+    email VARCHAR(200)
+);
+select author from AuthorDate
+UNION
+select author from AuthorDateTwo
+ORDER BY author;
+29. select count(title),author from Post
+Group by author;
+30. select count(title),author from Post
+Group by author;
+Having count(title)>1;
+31. select author FROM Post
+WHERE EXISTS (SELECT name FROM AuthorData WHERE AuthorData.author = Post.author);
+32. SELECT author
+FROM Post
+WHERE author = ANY (SELECT author FROM AuthorData WHERE email = 'pancerro@gmail.com');	
+33. CREATE TABLE PostAuthor
+(
+    author VARCHAR(200),
+    title VARCHAR(200)
+);
+ SELECT author,title INTO PostAuthor from Post
+34. INSERT INTO AuthorData (name, surname, email)
+SELECT name, surname, email FROM AuthorDataTwo;

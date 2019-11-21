@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pierwsze zadanie </title>
+    <meta name="keywords" content="strona,zadania,ktos_mi_kazal" />
+    <meta name="description" content="Zadanie ze studiow" />
+    <meta name="author" content="Adrian Ławecki" />
+</head>
+
+<body>
+    <div class="pojemnik">
+        <header>
+            <h1>naglowek</h1>
+            <button (click)="logout()">LOGOUT</button>
+            <nav>
+                <h1>Menu nawigacyjne</h1>
+            </nav>
+        </header>
+        <main>
+            <h1>głowne cialo strony</h1>
+            <section>
+                <article>
+                    <h3>artykul</h3>
+                    <div class="container">
+                        <img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="Snow" style="width:100%;">
+                        <div class="bottom-left">Bottom Left</div>
+                        <div class="top-left">Top Left</div>
+                        <div class="top-right">Top Right</div>
+                        <div class="bottom-right">Bottom Right</div>
+                        <div class="centered">Centered</div>
+                    </div>
+                    <br>
+                    <div class="pagination">
+                        <a routerLink="/dashboard">&laquo;</a>
+                        <a routerLink="/dashboard">1</a>
+                        <a class="active" routerLink="/dashboard">2</a>
+                        <a routerLink="/dashboard">3</a>
+                        <a routerLink="/dashboard">4</a>
+                        <a routerLink="/dashboard">5</a>
+                        <a routerLink="/dashboard">6</a>
+                        <a routerLink="/dashboard">&raquo;</a>
+                    </div>
+                    <br>
+                    <!-- Rectangular switch -->
+                    <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+                    <br>
+                    <!-- Rounded switch -->
+                    <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+                    <p> <a routerLink="/dashboardtwo">Kliknij by przejsc do drugiej strony</a></p>
+                </article>
+            </section>
+        </main>
+        <aside>
+            <h1>menu boczne</h1>
+            <div class="loader"></div>
+            <br>
+            <button class="button">Click Me</button>
+        </aside>
+        <footer>
+            <h1>stopka</h1>
+        </footer>
+    </div>
+</body>
+
+</html>

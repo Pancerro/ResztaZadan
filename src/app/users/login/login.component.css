@@ -1,0 +1,19 @@
+.center {
+    background-color: #EEE;
+    width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    color: red;
+    padding: auto;
+    text-align: center;
+    margin-top: 200px;
+}
+
+button {
+    width: 200px;
+}
+
+input {
+    width: 200px;
+}

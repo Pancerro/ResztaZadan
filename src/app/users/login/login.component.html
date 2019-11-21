@@ -1,0 +1,21 @@
+<div class="center">
+    <h1> Sign In!</h1>
+    <input placeholder="email" [(ngModel)]="credentials.email">
+    <input placeholder="password" type="password" [(ngModel)]="credentials.password">
+    <div>
+        <button (click)="login()">Login</button>
+        <button (click)="register()">Register</button>
+        <br>
+        <button type="button" (click)="resetPasswords()"> Reset password</button>
+    </div>
+    <br>
+    <button type="button" (click)="googleAuth()">
+            <div class="btn white darken-4 col s10 m4">
+                        <div class="left">
+                            <img width="20px" alt="Google &quot;G&quot; Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                        </div>
+                        Login with Google
+                </div>
+    </button>
+    <h3 style="color: green;">{{ info }}</h3>
+</div>
