@@ -41,5 +41,7 @@ const ROUTES = [
   providers: [CookieService],
   bootstrap:    [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+  
+ }
 
