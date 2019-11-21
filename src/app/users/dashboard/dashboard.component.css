@@ -174,17 +174,11 @@ ol>li:hover>ul {
     list-style-type: none;
 }
 
-
-/* Container holding the image and the text */
-
 .container {
     position: relative;
     text-align: center;
     color: white;
 }
-
-
-/* Bottom left text */
 
 .bottom-left {
     position: absolute;
@@ -192,17 +186,11 @@ ol>li:hover>ul {
     left: 16px;
 }
 
-
-/* Top left text */
-
 .top-left {
     position: absolute;
     top: 8px;
     left: 16px;
 }
-
-
-/* Top right text */
 
 .top-right {
     position: absolute;
@@ -210,17 +198,11 @@ ol>li:hover>ul {
     right: 16px;
 }
 
-
-/* Bottom right text */
-
 .bottom-right {
     position: absolute;
     bottom: 8px;
     right: 16px;
 }
-
-
-/* Centered text */
 
 .centered {
     position: absolute;
@@ -229,17 +211,11 @@ ol>li:hover>ul {
     transform: translate(-50%, -50%);
 }
 
-
-/* Popup container */
-
 .popup {
     position: relative;
     display: inline-block;
     cursor: pointer;
 }
-
-
-/* The actual popup (appears on top) */
 
 .popup .popuptext {
     visibility: hidden;
@@ -256,9 +232,6 @@ ol>li:hover>ul {
     margin-left: -80px;
 }
 
-
-/* Popup arrow */
-
 .popup .popuptext::after {
     content: "";
     position: absolute;
@@ -270,17 +243,11 @@ ol>li:hover>ul {
     border-color: #555 transparent transparent transparent;
 }
 
-
-/* Toggle this class when clicking on the popup container (hide and show the popup) */
-
 .popup .show {
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s
 }
-
-
-/* Add animation (fade in the popup) */
 
 @-webkit-keyframes fadeIn {
     from {
@@ -302,9 +269,7 @@ ol>li:hover>ul {
 
 .loader {
     border: 16px solid #f3f3f3;
-    /* Light grey */
     border-top: 16px solid #3498db;
-    /* Blue */
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -384,9 +349,6 @@ img:hover {
     }
 }
 
-
-/* Pagination links */
-
 .pagination a {
     color: black;
     float: left;
@@ -395,23 +357,14 @@ img:hover {
     transition: background-color .3s;
 }
 
-
-/* Style the active/current link */
-
 .pagination a.active {
     background-color: dodgerblue;
     color: white;
 }
 
-
-/* Add a grey background color on mouse-over */
-
 .pagination a:hover:not(.active) {
     background-color: #ddd;
 }
-
-
-/* The switch - the box around the slider */
 
 .switch {
     position: relative;
@@ -420,17 +373,11 @@ img:hover {
     height: 34px;
 }
 
-
-/* Hide default HTML checkbox */
-
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
-
-
-/* The slider */
 
 .slider {
     position: absolute;
@@ -469,9 +416,6 @@ input:checked+.slider:before {
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
-
-
-/* Rounded sliders */
 
 .slider.round {
     border-radius: 34px;
