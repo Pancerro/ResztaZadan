@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CookieService } from "angular2-cookie/core";
@@ -9,7 +9,7 @@ import { CookieService } from "angular2-cookie/core";
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   user = this.authService.user;
   
   constructor(
@@ -20,8 +20,6 @@ export class DashboardComponent {
   ngOnInit(){
     this.cookieService.put(this.authService.user.email, "test");
     console.log("Set Test Cookie as Test");
-
-    
   }
   getCookie(key: string) {
     return this.cookieService.get(key);

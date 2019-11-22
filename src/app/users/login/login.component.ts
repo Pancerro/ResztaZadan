@@ -22,7 +22,7 @@ export class LoginComponent {
 
   login() {
     this.authService.login(this.credentials)
-      .then(() => this.router.navigate(['/dashboardtwo']))
+      .then(() => this.router.navigate(['/dashboard']))
       .catch(err => this.info = 'WRONG EMAIL OR PASSWORDS');
   }
 

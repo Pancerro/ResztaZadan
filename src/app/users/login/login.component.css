@@ -1,19 +1,19 @@
 .center {
     background-color: #EEE;
-    width: 500px;
+    width: 50%;
     height: auto;
     display: block;
     margin: 0 auto;
     color: red;
     padding: auto;
     text-align: center;
-    margin-top: 200px;
+    margin-top: 20%;
 }
 
 button {
-    width: 200px;
+    width: 20%;
 }
 
 input {
-    width: 200px;
+    width: 20%;
 }
