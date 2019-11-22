@@ -36,6 +36,7 @@ const ROUTES = [
     RouterModule.forRoot(ROUTES),
     AngularFireAuthModule,
     AppRoutingModule,
+    RouterModule.forRoot(ROUTES, {useHash: true}),
   ],
   declarations: [ AppComponent, LoginComponent, DashboardComponent, DashboardstwoComponent],
   providers: [CookieService],
