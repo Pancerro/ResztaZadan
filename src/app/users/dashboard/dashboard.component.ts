@@ -5,6 +5,7 @@ import { CookieService } from "angular2-cookie/core";
 
 
 @Component({
+  selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
