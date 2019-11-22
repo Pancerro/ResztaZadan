@@ -12,113 +12,61 @@
 <body>
     <div class="pojemnik">
         <header>
-            <a routerLink="/dashboard"><img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="logo" width="75" height="75"></a><br>
+            <h1>naglowek</h1>
             <button (click)="logout()">LOGOUT</button>
             <nav>
-                <h4 id="naglowek"> Dzien Dobry! </h4>
-                <h4>Menu nawigacyjne</h4>
-
-                <ol>
-                    <li>
-                        Opcja 1
-                        <ul>
-                            <li><a routerLink="/dashboardtwo">Kto </a></li>
-                            <li><a routerLink="/dashboardtwo">lubi</a></li>
-                            <li><a routerLink="/dashboardtwo">pancernki?</a></li>
-                            <li><a routerLink="/dashboardtwo">Ja!</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a routerLink="/dashboardtwo">Opcja 2</a>
-                    </li>
-                    <li>
-                        Opcja 3
-                        <ul>
-                            <li><a routerLink="/dashboardtwo">Ale</a></li>
-                            <li><a routerLink="/dashboardtwo">czy</a></li>
-                            <li><a routerLink="/dashboardtwo">napewno?</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        Opcja 4
-                        <ul>
-                            <li><a routerLink="/dashboardtwo">No</a></li>
-                            <li><a routerLink="/dashboardtwo">nie wiem...</a></li>
-                        </ul>
-                    </li>
-                </ol>
+                <h1>Menu nawigacyjne</h1>
             </nav>
         </header>
         <main>
             <h1>głowne cialo strony</h1>
             <section>
                 <article>
-                    <h3><cite>Artykul</cite></h3>
-                    <div class="display_block" style="background-color:black;">
-                        <p>W tym akapicie jest link do strony glownej <br> <a (click)="dashboardtwo()">Kliknij by przejsc do strony glownej</a></p>
+                    <h3>artykul</h3>
+                    <div class="container">
+                        <img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="Snow" style="width:100%;">
+                        <div class="bottom-left">Bottom Left</div>
+                        <div class="top-left">Top Left</div>
+                        <div class="top-right">Top Right</div>
+                        <div class="bottom-right">Bottom Right</div>
+                        <div class="centered">Centered</div>
                     </div>
-                    <div class="display_block" style="background-color:red;">
-                        <blockquote><em><q>Nie sądzę, byś kiedykolwiek<span style="color:green;"> powinien wstydzić się</span> czy obawiać tego kim
-                            jesteś, ani tego co dzieje się w twoim życiu. Życie jest dobre. Człowieku,
-                            możesz czuć się jak ofiara cały czas, lub podnieść swój tyłek i zrobić to,
-                            co chcesz zrobić</q></em></blockquote>
+                    <br>
+                    <div class="pagination">
+                        <a routerLink="/dashboard">&laquo;</a>
+                        <a routerLink="/dashboard">1</a>
+                        <a class="active" routerLink="/dashboard">2</a>
+                        <a routerLink="/dashboard">3</a>
+                        <a routerLink="/dashboard">4</a>
+                        <a routerLink="/dashboard">5</a>
+                        <a routerLink="/dashboard">6</a>
+                        <a routerLink="/dashboard">&raquo;</a>
                     </div>
-                    <hr/>
-                    <button class="accordion">Section 1</button>
-                    <div class="panel">
-                        <p>Lorem ipsum...</p>
-                    </div>
-
-                    <button class="accordion">Section 2</button>
-                    <div class="panel">
-                        <p>Lorem ipsum...</p>
-                    </div>
-
-                    <button class="accordion">Section 3</button>
-                    <div class="panel">
-                        <p>Lorem ipsum...</p>
-                    </div>
+                    <br>
+                    <!-- Rectangular switch -->
+                    <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+                    <br>
+                    <!-- Rounded switch -->
+                    <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+                    <p> <a (click)="dashboardtwo()">Kliknij by przejsc do drugiej strony</a></p>
                 </article>
             </section>
 
-            <button id="myBtn">Open Modal</button>
-
-            <div id="myModal" class="modal">
-
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>Some text in the Modal..</p>
-                </div>
-
-            </div>
-            <div class="container">
-                <img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="Avatar" class="image">
-                <div class="overlay">
-                    <div class="text">Hello World</div>
-                </div>
-            </div>
-
         </main>
         <aside>
-            <h4><b>Menu boczne</b></h4>
-            <p>Kliknij w przycisk a zadziala sie magia </p>
-            <div id="myDIV">
-                <p> Element z Divem </p>
-            </div>
-            <p><button (click)="myFunction()">Kliknij tu</button></p>
-            <button onclick="document.getElementById('myInput').value = ''">Clear input field</button>
-            <input type="text" value="Blabla" id="myInput">
-            <!-- Draggable DIV -->
-            <div id="mydiv">
-                <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
-                <div id="mydivheader">Click here to move</div>
-                <p>Move</p>
-                <p>this</p>
-                <p>DIV</p>
-            </div>
+            <h1>menu boczne</h1>
+            <div class="loader"></div>
+            <br>
+            <button class="button">Click Me</button>
         </aside>
         <footer>
-            <h5><small>stopka</small></h5>
+            <h1>stopka</h1>
         </footer>
     </div>
 </body>
