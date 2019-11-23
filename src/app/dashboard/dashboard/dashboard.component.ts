@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,7 +12,7 @@ export class DashboardComponent implements OnInit{
   ngOnInit(){
   }
   user = this.authService.user;
-
+  database=firebase.database();
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -22,5 +24,4 @@ export class DashboardComponent implements OnInit{
   dashboard(){
     this.router.navigate(['/dashboardtwo']);
   }
-  
 }

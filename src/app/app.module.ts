@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { AuthGuard } from './services/auth.guard';
 import { LoginComponent } from './users/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { CookieService } from "angular2-cookie/services/cookies.service";
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { DashboardstwoComponent } from './dashboard/dashboardstwo/dashboardstwo.component';
@@ -44,6 +45,7 @@ const ROUTES = [
     AppRoutingModule,
     RouterModule.forRoot(ROUTES, {useHash: true}),
     RecaptchaModule.forRoot(),
+    AngularFireDatabaseModule
   ],
   declarations: [ AppComponent, LoginComponent, DashboardComponent, DashboardstwoComponent, RegisterComponent, WelcomeSiteComponent],
   providers: [CookieService],

@@ -1,11 +1,15 @@
 <div class="center">
     <h1> Register or <u><a (click)="login()">Login!</a></u></h1>
-    Email: <input placeholder="email" [(ngModel)]="credentials.email"> Password: <input placeholder="password" type="password" [(ngModel)]="credentials.password"> Repeat password: <input placeholder="password" type="password" [(ngModel)]="password"><br>
-    <br>
-    <re-captcha (resolved)="resolved($event)" siteKey="6LfOQ8QUAAAAAE310YWvEdGYeXWAIlq_frghVmRe"></re-captcha>
-    <br>
-    <div>
-        <button (click)="register()">Register</button>
-    </div>
+    <form (ngSubmit)="register()">
+        <p>Email: <input placeholder="email" name="credentials.email" [(ngModel)]="credentials.email"> </p>
+        <p>Password: <input placeholder="password" type="password" name="credentials.password" [(ngModel)]="credentials.password"> Repeat password: <input placeholder="password" type="password" name="password" [(ngModel)]="password"></p>
+        <p>Name: <input placeholder="Name" name="name" [(ngModel)]="name"></p>
+        <p>Surname: <input placeholder="Surname" name="surname" [(ngModel)]="surname"></p>
+        <re-captcha (resolved)="resolved($event)" siteKey="6LfOQ8QUAAAAAE310YWvEdGYeXWAIlq_frghVmRe"></re-captcha>
+        <br>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+    </form>
     <h3 style="color: red;">{{ info }}</h3>
 </div>
