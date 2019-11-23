@@ -13,7 +13,7 @@ export class LoginComponent {
     password: ''
   }
 
-  info = '';
+  info:String = '';
 
   constructor(
     private router: Router,
@@ -25,12 +25,6 @@ export class LoginComponent {
       .then(() => this.router.navigate(['/dashboard']))
       .catch(err => this.info = 'WRONG EMAIL OR PASSWORDS');
   }
-
-  register() {
-    this.authService.register(this.credentials)
-      .then(() => this.info = 'ACCOUNT CREATED, PLZ LOGIN IN!')
-      .catch(err => console.log(err.message));
-  }
   googleAuth(){
     this.authService.googleAuth()
     .then(() => this.router.navigate(['/dashboard']))
@@ -40,6 +34,9 @@ export class LoginComponent {
     this.authService.resetPassword(this.credentials)
     .then(() => this.info = 'CHECK YOUR E-MAIL')
       .catch(err => console.log(err.message));
+  }
+  register(){
+    this.router.navigate(['register']);
   }
 }
 

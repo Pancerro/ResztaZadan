@@ -1,10 +1,8 @@
 <div class="center">
-    <h1> Sign In!</h1>
+    <h1> Sign In! or <u><a (click)="register()">Register!</a></u></h1>
     Email: <input placeholder="email" [(ngModel)]="credentials.email"> Password: <input placeholder="password" type="password" [(ngModel)]="credentials.password">
     <div>
         <button (click)="login()">Login</button>
-        <br>
-        <button (click)="register()">Register</button>
         <br>
         <button type="button" (click)="resetPasswords()"> Reset password</button>
     </div>
