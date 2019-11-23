@@ -6,15 +6,18 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { RouterModule }  from '@angular/router';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
-import { DashboardComponent } from './users/dashboard/dashboard.component';
 import { AuthGuard } from './services/auth.guard';
 import { LoginComponent } from './users/login/login.component';
-import { DashboardstwoComponent } from './users/dashboardstwo/dashboardstwo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CookieService } from "angular2-cookie/services/cookies.service";
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { DashboardstwoComponent } from './dashboard/dashboardstwo/dashboardstwo.component';
+import { RegisterComponent } from './users/register/register.component';
+import { WelcomeSiteComponent } from './dashboard/welcome-site/welcome-site.component';
 
 const ROUTES = [
-  { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: '', redirectTo: '/welcome-site', pathMatch: 'full'},
+  {path: 'welcome-site', component: WelcomeSiteComponent},
   { path: 'login', component: LoginComponent },
   {
     path: 'dashboard',
@@ -25,9 +28,12 @@ const ROUTES = [
     path:'dashboardtwo',
     component:DashboardstwoComponent,
     canActivate:[AuthGuard],
-}
+  },
+  {
+    path:'register',
+    component:RegisterComponent,
+  }
 ];
-
 @NgModule({
   imports: [ 
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -38,7 +44,7 @@ const ROUTES = [
     AppRoutingModule,
     RouterModule.forRoot(ROUTES, {useHash: true}),
   ],
-  declarations: [ AppComponent, LoginComponent, DashboardComponent, DashboardstwoComponent],
+  declarations: [ AppComponent, LoginComponent, DashboardComponent, DashboardstwoComponent, RegisterComponent, WelcomeSiteComponent],
   providers: [CookieService],
   bootstrap:    [ AppComponent ]
 })
