@@ -1,1 +1,11 @@
-<p>register works!</p>
+<div class="center">
+    <h1> Register or <u><a (click)="login()">Login!</a></u></h1>
+    Email: <input placeholder="email" [(ngModel)]="credentials.email"> Password: <input placeholder="password" type="password" [(ngModel)]="credentials.password"> Repeat password: <input placeholder="password" type="password" [(ngModel)]="password"><br>
+    <br>
+    <re-captcha (resolved)="resolved($event)" siteKey="6LfOQ8QUAAAAAE310YWvEdGYeXWAIlq_frghVmRe"></re-captcha>
+    <br>
+    <div>
+        <button (click)="register()">Register</button>
+    </div>
+    <h3 style="color: red;">{{ info }}</h3>
+</div>

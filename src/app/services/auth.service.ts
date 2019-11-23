@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User, auth } from 'firebase';
 import { Observable } from 'rxjs/index';
+import { Router } from '@angular/router';
 
 export interface Credentials {
   email: string;
@@ -13,7 +14,7 @@ export interface Credentials {
 export class AuthService {
   readonly authState$: Observable<User | null> = this.fireAuth.authState;
 
-  constructor(private fireAuth: AngularFireAuth) {}
+  constructor(private router: Router,private fireAuth: AngularFireAuth) {}
 
   get user(): User | null {
     return this.fireAuth.auth.currentUser;
@@ -25,8 +26,10 @@ export class AuthService {
 
   register({email, password}: Credentials) {
     return this.fireAuth.auth.createUserWithEmailAndPassword(email, password)
-    .then((result) => {
-      this.SendVerificationMail()
+    .then(() => {
+      this.SendVerificationMail();
+      window.alert('You can now log in!');
+      this.router.navigate(['login']);
     }).catch((error) => {
       window.alert(error.message)
     })

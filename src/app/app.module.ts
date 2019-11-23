@@ -14,7 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { DashboardstwoComponent } from './dashboard/dashboardstwo/dashboardstwo.component';
 import { RegisterComponent } from './users/register/register.component';
 import { WelcomeSiteComponent } from './dashboard/welcome-site/welcome-site.component';
-
+import { RecaptchaModule } from 'ng-recaptcha';
 const ROUTES = [
   { path: '', redirectTo: '/welcome-site', pathMatch: 'full'},
   {path: 'welcome-site', component: WelcomeSiteComponent},
@@ -43,6 +43,7 @@ const ROUTES = [
     AngularFireAuthModule,
     AppRoutingModule,
     RouterModule.forRoot(ROUTES, {useHash: true}),
+    RecaptchaModule.forRoot(),
   ],
   declarations: [ AppComponent, LoginComponent, DashboardComponent, DashboardstwoComponent, RegisterComponent, WelcomeSiteComponent],
   providers: [CookieService],
