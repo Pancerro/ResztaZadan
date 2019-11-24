@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 export class DashboardComponent implements OnInit{
   ngOnInit(){
   }
+  info:Boolean;
   user = this.authService.user;
   database=firebase.database();
   constructor(
@@ -20,6 +21,9 @@ export class DashboardComponent implements OnInit{
   logout() {
     this.authService.logout()
       .then(() => this.router.navigate(['/login']));
+  }
+  userVerified(){
+    this.info=this.authService.userEmailVerified();
   }
   dashboard(){
     this.router.navigate(['/dashboardtwo']);

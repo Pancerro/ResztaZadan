@@ -3,6 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { User, auth } from 'firebase';
 import { Observable } from 'rxjs/index';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
 
 export interface Credentials {
   email: string;
@@ -13,9 +14,7 @@ export interface Credentials {
 @Injectable({providedIn: 'root'})
 export class AuthService {
   readonly authState$: Observable<User | null> = this.fireAuth.authState;
-
   constructor(private router: Router,private fireAuth: AngularFireAuth) {}
-
   get user(): User | null {
     return this.fireAuth.auth.currentUser;
   }
@@ -53,5 +52,8 @@ export class AuthService {
     }
   resetPassword({email}:Credentials){
     return this.fireAuth.auth.sendPasswordResetEmail(email)
+  }
+  userEmailVerified(){
+    return firebase.auth().currentUser.emailVerified;
   }
 }

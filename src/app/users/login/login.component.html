@@ -1,11 +1,13 @@
 <div class="center">
     <h1> Sign In! or <u><a (click)="register()">Register!</a></u></h1>
-    Email: <input placeholder="email" [(ngModel)]="credentials.email"> Password: <input placeholder="password" type="password" [(ngModel)]="credentials.password">
-    <div>
-        <button (click)="login()">Login</button>
-        <br>
-        <button type="button" (click)="resetPasswords()"> Reset password</button>
-    </div>
+    <form (ngSubmit)="login()">
+        Email: <input type="text" placeholder="email" name="credentials.email" [(ngModel)]="credentials.email"> Password: <input type="password" placeholder="password" name="credentials.password" [(ngModel)]="credentials.password">
+        <div>
+            <button type="submit">Login</button>
+            <br>
+            <button type="button" (click)="resetPasswords()"> Reset password</button>
+        </div>
+    </form>
     <br>
     <button type="button" (click)="googleAuth()">
             <div class="btn white darken-4 col s10 m4">
