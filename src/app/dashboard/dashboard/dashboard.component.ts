@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import * as firebase from 'firebase';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { AngularFireDatabase, AngularFireList, snapshotChanges } from 'angularfire2/database';
-import { Observable, pipe } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import { AngularFireDatabase} from 'angularfire2/database';
+import { Observable} from 'rxjs';
+import { DataService } from 'src/app/services/data.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,6 +15,7 @@ export class DashboardComponent implements OnInit{
   API_KEY='9b43198568fc4738bd5e4eccb6d24c20';
   public image:String;
   public articles;
+  name='Michuj';
   users:Observable<any[]>;
   userId = firebase.auth().currentUser.uid;
   ngOnInit(){}
@@ -21,10 +23,14 @@ export class DashboardComponent implements OnInit{
     private router: Router,
     private authService: AuthService,
     private http:HttpClient,
+    private dataService: DataService,
     public db:AngularFireDatabase,
   ) {
-        this.users=db.list('/users/'+this.userId).valueChanges();
+        this.users=dataService.getUserInfo(this.userId);
   }
+  deleteSth(key){
+    firebase.database().ref().child('/users/'+key+'/').remove();
+}
   logout() {
     this.authService.logout() 
       .then(() => this.router.navigate(['/login']));
@@ -42,9 +48,6 @@ export class DashboardComponent implements OnInit{
       this.articles= data['articles']; 
   })
   }
-  getList(){
-   console.log(this.db.list('users/').update(this.userId,{username: 'Adrian'}));
-   console.log(this.db.list('users/'+this.userId).remove('usersurname'));
-  }
+ 
 }
 
