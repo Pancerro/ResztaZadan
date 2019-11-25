@@ -14,13 +14,24 @@
         <header>
             <h1>naglowek</h1>
             <button (click)="logout()">LOGOUT</button>
+            <button (click)="getDogImage()">Dog Image</button>
+            <button (click)="getArticles()">Article</button>
             <nav>
                 <h1>Menu nawigacyjne</h1>
             </nav>
         </header>
         <main>
+            <div *ngFor="let user of users | async">
+                <h3> Witaj {{user.username}}</h3>
+                <h3> Twoj mail to: {{user.email}}</h3>
+            </div>
             <h1>głowne cialo strony</h1>
-            <h3 style="color: red;"> Verified: {{ info }}</h3>
+            <div> <img src={{image}}></div>
+            <div *ngFor="let article of articles">
+                <h2>{{article.title}}</h2>
+                <h3> {{article.description}}</h3>
+                <a href="{{article.url}}">Read full article</a>
+            </div>
             <section>
                 <article>
                     <h3>artykul</h3>

@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
  public name:String;
  public surname:String;
  private userId:String;
- captha:boolean=false;
+ captcha:String;
   constructor( private router: Router,
     private authService: AuthService) { }
   ngOnInit() {}
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
   }
   register() {
     if(this.matchingPasswords()==true){
-      if(this.captha==true)
+      if(this.captcha)
       {
       this.authService.register(this.credentials)
       .then(() => this.info ='You failed to register')
@@ -40,15 +40,12 @@ export class RegisterComponent implements OnInit {
     else return false;
   }
   resolved(captchaResponse: string) {
-    this.captha=true;
+    this.captcha=captchaResponse;
 } 
 writeUserData(userId){
-  firebase.database().ref('users/'+ userId).set({
+  firebase.database().ref('users/'+ userId+'/userInfo').set({
     username:this.name,
     usersurname:this.surname,
     email:this.credentials.email
   });}
-
-  
-
 }

@@ -3,7 +3,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { User, auth } from 'firebase';
 import { Observable } from 'rxjs/index';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase';
 
 export interface Credentials {
   email: string;
@@ -52,8 +51,5 @@ export class AuthService {
     }
   resetPassword({email}:Credentials){
     return this.fireAuth.auth.sendPasswordResetEmail(email)
-  }
-  userEmailVerified(){
-    return firebase.auth().currentUser.emailVerified;
   }
 }

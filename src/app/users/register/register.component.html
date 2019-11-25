@@ -1,11 +1,13 @@
 <div class="center">
     <h1> Register or <u><a (click)="login()">Login!</a></u></h1>
     <form (ngSubmit)="register()">
-        <p>Email: <input placeholder="email" name="credentials.email" [(ngModel)]="credentials.email"> </p>
-        <p>Password: <input placeholder="password" type="password" name="credentials.password" [(ngModel)]="credentials.password"> Repeat password: <input placeholder="password" type="password" name="password" [(ngModel)]="password"></p>
-        <p>Name: <input placeholder="Name" name="name" [(ngModel)]="name"></p>
-        <p>Surname: <input placeholder="Surname" name="surname" [(ngModel)]="surname"></p>
+        <p> Email: <input placeholder="email" name="credentials.email" required [(ngModel)]="credentials.email"> </p>
+        <p> Password: <input placeholder="password" type="password" name="credentials.password" [(ngModel)]="credentials.password"></p>
+        <p> Repeat password: <input placeholder="password" type="password" name="password" [(ngModel)]="password"></p>
+        <p> Name: <input placeholder="Name" name="name" [(ngModel)]="name"></p>
+        <p> Surname: <input placeholder="Surname" name="surname" [(ngModel)]="surname"></p>
         <re-captcha (resolved)="resolved($event)" siteKey="6LfOQ8QUAAAAAE310YWvEdGYeXWAIlq_frghVmRe"></re-captcha>
+
         <br>
         <div>
             <button type="submit">Register</button>

@@ -17,3 +17,7 @@ button {
 input {
     width: auto;
 }
+
+.form {
+    width: 100%;
+}
