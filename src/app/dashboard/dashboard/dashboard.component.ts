@@ -15,8 +15,8 @@ export class DashboardComponent implements OnInit{
   API_KEY='9b43198568fc4738bd5e4eccb6d24c20';
   public image:String;
   public articles;
-  name='Michuj';
   users:Observable<any[]>;
+  table:Observable<any[]>;
   userId = firebase.auth().currentUser.uid;
   ngOnInit(){}
   constructor(
@@ -26,7 +26,9 @@ export class DashboardComponent implements OnInit{
     private dataService: DataService,
     public db:AngularFireDatabase,
   ) {
-        this.users=dataService.getUserInfo(this.userId);
+        this.users=dataService.getUserInfo(this.userId,'userInfo');
+        dataService.writeUserTable(this.userId,'x','x','x','x','x');
+        this.table=dataService.getUserInfo(this.userId,'x');
   }
   deleteSth(key){
     firebase.database().ref().child('/users/'+key+'/').remove();
@@ -48,6 +50,6 @@ export class DashboardComponent implements OnInit{
       this.articles= data['articles']; 
   })
   }
- 
-}
+  
 
+  }

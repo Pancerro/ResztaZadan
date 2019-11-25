@@ -12,8 +12,8 @@ export class DataService {
   constructor(public db:AngularFireDatabase) {
    }
   
-   getUserInfo(userId){
-     return this.db.list('/users/'+userId).valueChanges();
+   getUserInfo(userId,tableparent){
+     return this.db.list('/users/'+userId+'/'+tableparent).valueChanges();
    }
    userNameUpdate(userId,name){
     return this.db.object('users/'+userId+'/userInfo').update({username: name})
@@ -27,12 +27,18 @@ export class DataService {
    deleteUser(userId){
      return this.db.list('users/'+userId).remove();
    }
-   writeUserData(userId,name,surname,email){
-    firebase.database().ref('users/'+ userId+'/userInfo').set({
+   writeUserData(userId,tableparent,tablechild,name,surname,email){
+    firebase.database().ref('users/'+ userId+'/'+tableparent+'/'+tablechild).set({
       username:name,
       usersurname:surname,
       email:email
     });}
+    writeUserTable(userId,tableparent,tablechild,name,surname,email){
+      firebase.database().ref('users/'+ userId+'/'+tableparent+'/'+tablechild).set({
+        title:name,
+        description:surname,
+        active:email
+      });}
      // console.log(this.db.list('users/').update(this.userId,{username: 'Adrian'}));
   // console.log(this.db.list('users/'+this.userId).remove('usersurname'));
 }

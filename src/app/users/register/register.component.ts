@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
       {
       this.authService.register(this.credentials)
       .then(() => this.info ='You failed to register')
-      .then(()=>this.dateService.writeUserData(this.userId = firebase.auth().currentUser.uid,this.name,this.surname,this.credentials.email))
+      .then(()=>this.dateService.writeUserData(this.userId = firebase.auth().currentUser.uid,'userInfo','info',this.name,this.surname,this.credentials.email))
       } else this.info='Select captha';
     } else this.info='Passwords do not match';
   }
