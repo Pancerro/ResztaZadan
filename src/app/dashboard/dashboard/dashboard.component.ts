@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit{
       this.articles= data['articles']; 
   })
   }
-  delete(item) {
-    this.dataService.removeData(this.userId,this.tableParent,item);
+  delete(removeitem) {
+    this.dataService.removeData(this.userId,this.tableParent).remove(removeitem);
   }
   }

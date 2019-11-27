@@ -23,7 +23,7 @@
         </header>
         <main>
             <div *ngFor="let kanban of kanbans | async">
-                <button (click)="delete(kanban)">[x]</button>
+                <button (click)="delete(kanban.title)">[x]</button>
                 <h3> TaskTitle: {{kanban.title}}</h3>
                 <h3> TaskDescription: {{kanban.description}}</h3>
             </div>

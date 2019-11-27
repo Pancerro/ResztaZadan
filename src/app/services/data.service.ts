@@ -8,8 +8,8 @@ import * as firebase from 'firebase';
 export class DataService {
   constructor(public db:AngularFireDatabase) {
    }
-   removeData(userId,tableparent,remove_item){
-    return this.db.list('/users/'+userId+'/'+tableparent).remove(remove_item);
+   removeData(userId,tableparent){
+    return this.db.list('/users/'+userId+'/'+tableparent);
   }
    getDate(userId,tableparent){
      return this.db.list('/users/'+userId+'/'+tableparent).valueChanges();
