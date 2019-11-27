@@ -3,10 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { RouterModule }  from '@angular/router';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
-import { AuthGuard } from './services/auth.guard';
 import { LoginComponent } from './users/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -21,35 +19,14 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule,  MatDialogModule,MatInputModule, MatButtonModule} from '@angular/material';
 import { FormModalComponent } from './dashboard/form-modal/form-modal.component';
  
-const ROUTES = [
-  { path: '', redirectTo: '/welcome-site', pathMatch: 'full'},
-  {path: 'welcome-site', component: WelcomeSiteComponent},
-  { path: 'login', component: LoginComponent },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path:'dashboardtwo',
-    component:DashboardstwoComponent,
-    canActivate:[AuthGuard],
-  },
-  {
-    path:'register',
-    component:RegisterComponent,
-  }
-];
 @NgModule({
   imports: [ 
     MatSliderModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserModule, 
     FormsModule,
-    RouterModule.forRoot(ROUTES),
     AngularFireAuthModule,
     AppRoutingModule,
-    RouterModule.forRoot(ROUTES, {useHash: true}),
     RecaptchaModule.forRoot(),
     AngularFireDatabaseModule,
     HttpClientModule,

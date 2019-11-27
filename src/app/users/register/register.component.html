@@ -1,17 +1,32 @@
 <div class="center">
     <h1> Register or <u><a (click)="login()">Login!</a></u></h1>
-    <form (ngSubmit)="register()">
-        <p> Email: <input placeholder="email" name="credentials.email" required [(ngModel)]="credentials.email"> </p>
-        <p> Password: <input placeholder="password" type="password" name="credentials.password" [(ngModel)]="credentials.password"></p>
-        <p> Repeat password: <input placeholder="password" type="password" name="password" [(ngModel)]="password"></p>
-        <p> Name: <input placeholder="Name" name="name" [(ngModel)]="name"></p>
-        <p> Surname: <input placeholder="Surname" name="surname" [(ngModel)]="surname"></p>
-        <re-captcha (resolved)="resolved($event)" siteKey="6LfOQ8QUAAAAAE310YWvEdGYeXWAIlq_frghVmRe"></re-captcha>
-
-        <br>
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm.value.registration)">
+        <div class="matForm" ngModelGroup="registration">
+            <mat-form-field>
+                <p><input matInput type="text" placeholder="Email" name="email" required ngModel> </p>
+                <mat-error>Email is Mandatory</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <p> <input matInput placeholder="Password" type="password" name="password" required ngModel></p>
+                <mat-error>Password is Mandatory</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <p><input matInput placeholder=" Repeat password" type="password" name="repeatPassword" required ngModel></p>
+                <mat-error>Repeat password is Mandatory</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <p><input matInput placeholder="Name" name="name" ngModel></p>
+            </mat-form-field>
+            <mat-form-field>
+                <p><input matInput placeholder="Surname" name="surname" ngModel></p>
+            </mat-form-field>
+            <p>
+                <re-captcha (resolved)="resolved($event)" siteKey="6LfOQ8QUAAAAAE310YWvEdGYeXWAIlq_frghVmRe"></re-captcha>
+            </p>
+            <h3 style="color: red;">{{ info }}</h3>
+        </div>
         <div>
-            <button type="submit">Register</button>
+            <button class="button" mat-stroked-button color="primary" type="submit">Register</button>
         </div>
     </form>
-    <h3 style="color: red;">{{ info }}</h3>
 </div>

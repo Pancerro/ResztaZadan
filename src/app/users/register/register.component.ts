@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import * as firebase from 'firebase';
 import { DataService } from 'src/app/services/data.service';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-register',
@@ -13,35 +14,40 @@ export class RegisterComponent implements OnInit {
   credentials = {
     email: '',
     password: ''
-  }
+  };
  info: String;
- public password: String;
- public name:String;
- public surname:String;
- private userId:String;
- captcha:String;
+ captcha:Boolean;
   constructor( private router: Router,
     private authService: AuthService,
     private dateService: DataService) { }
   ngOnInit() {}
-  login(){
+  login():void{
     this.router.navigate(['login']);
   }
-  register() {
-    if(this.matchingPasswords()==true){
-      if(this.captcha)
-      {
+  register(registerForm):void {
+    if(this.matchingPasswords(registerForm.repeatPassword,registerForm.password)==true  && this.captchaIsTrue()){
+        this.credentials.email=registerForm.email;
+        this.credentials.password=registerForm.password;
       this.authService.register(this.credentials)
       .then(() => this.info ='You failed to register')
-      .then(()=>this.dateService.writeUserData(this.userId = firebase.auth().currentUser.uid,'userInfo','info',this.name,this.surname,this.credentials.email))
-      } else this.info='Select captha';
-    } else this.info='Passwords do not match';
+      .then(()=>this.dateService.writeUserData(firebase.auth().currentUser.uid,'userInfo','info',registerForm.name,registerForm.surname,registerForm.email))
+    }
   }
-  matchingPasswords():boolean{
-    if(this.password.valueOf()==this.credentials.password.valueOf()) return true;
-    else return false;
+  matchingPasswords(repeatPassword,password):boolean{
+    if(repeatPassword.valueOf()==password.valueOf()) return true;
+    else {
+      this.info='Passwords do not match';
+      return false;
+    }
   }
-  resolved(captchaResponse: string) {
+  captchaIsTrue():boolean{
+    if(this.captcha) return true;
+    else{
+      this.info="select your Captha!"
+      return false;
+    }
+  }
+  resolved(captchaResponse):void {
     this.captcha=captchaResponse;
 } 
 }

@@ -1,0 +1,21 @@
+.center {
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.matForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.matForm>* {
+    width: auto;
+}
+
+.button {
+    margin-left: 15%;
+    width: 200px;
+}

@@ -49,7 +49,6 @@ export class DashboardComponent implements OnInit{
       this.taskTitle = result.title;
       this.taskDescription=result.description;
       this.dataService.writeUserTable(this.userId,this.tableParent,this.taskTitle,this.taskTitle,this.taskDescription);
-      console.log(result);
     });
   }
   logout() {
@@ -62,7 +61,6 @@ export class DashboardComponent implements OnInit{
   public getDogImage(){
     this.http.get(`https://dog.ceo/api/breeds/image/random`).subscribe((data)=>{
       this.image= data['message']; 
-      console.log(this.taskTitle);
   })
   }
   public getArticles(){
@@ -71,6 +69,6 @@ export class DashboardComponent implements OnInit{
   })
   }
   delete(removeitem) {
-    this.dataService.removeData(this.userId,this.tableParent).remove(removeitem);
+    this.dataService.removeData(this.userId,this.tableParent,removeitem);
   }
   }
