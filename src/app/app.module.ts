@@ -10,14 +10,17 @@ import { AuthGuard } from './services/auth.guard';
 import { LoginComponent } from './users/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { CookieService } from "angular2-cookie/services/cookies.service";
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { DashboardstwoComponent } from './dashboard/dashboardstwo/dashboardstwo.component';
 import { RegisterComponent } from './users/register/register.component';
 import { WelcomeSiteComponent } from './dashboard/welcome-site/welcome-site.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { HttpClientModule }    from '@angular/common/http';
-;
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatFormFieldModule,  MatDialogModule,MatInputModule, MatButtonModule} from '@angular/material';
+import { FormModalComponent } from './dashboard/form-modal/form-modal.component';
+ 
 const ROUTES = [
   { path: '', redirectTo: '/welcome-site', pathMatch: 'full'},
   {path: 'welcome-site', component: WelcomeSiteComponent},
@@ -39,6 +42,7 @@ const ROUTES = [
 ];
 @NgModule({
   imports: [ 
+    MatSliderModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserModule, 
     FormsModule,
@@ -49,10 +53,15 @@ const ROUTES = [
     RecaptchaModule.forRoot(),
     AngularFireDatabaseModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule
 
   ],
-  declarations: [ AppComponent, LoginComponent, DashboardComponent, DashboardstwoComponent, RegisterComponent, WelcomeSiteComponent],
-  providers: [CookieService],
+  declarations: [ AppComponent, LoginComponent, DashboardComponent, DashboardstwoComponent, RegisterComponent, WelcomeSiteComponent,FormModalComponent],
+  entryComponents: [FormModalComponent],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule {

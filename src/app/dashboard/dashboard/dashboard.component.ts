@@ -3,9 +3,12 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import * as firebase from 'firebase';
 import {HttpClient} from '@angular/common/http';
-import { AngularFireDatabase} from 'angularfire2/database';
+import { AngularFireDatabase,AngularFireList} from 'angularfire2/database';
 import { Observable} from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
+import { MatDialog } from '@angular/material';
+import { FormModalComponent } from '../form-modal/form-modal.component';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -15,9 +18,14 @@ export class DashboardComponent implements OnInit{
   API_KEY='9b43198568fc4738bd5e4eccb6d24c20';
   public image:String;
   public articles;
+  tableParent="Do";
   users:Observable<any[]>;
-  table:Observable<any[]>;
+  kanbans:Observable<any[]>;
+  dialogValue:string; 
+  sendValue:string;
   userId = firebase.auth().currentUser.uid;
+  taskTitle: string;
+  taskDescription:string;
   ngOnInit(){}
   constructor(
     private router: Router,
@@ -25,14 +33,25 @@ export class DashboardComponent implements OnInit{
     private http:HttpClient,
     private dataService: DataService,
     public db:AngularFireDatabase,
+    public dialog: MatDialog
   ) {
-        this.users=dataService.getUserInfo(this.userId,'userInfo');
-        dataService.writeUserTable(this.userId,'x','x','x','x','x');
-        this.table=dataService.getUserInfo(this.userId,'x');
+        this.users=dataService.getDate(this.userId,'userInfo');
+        this.kanbans=this.dataService.getDate(this.userId,this.tableParent);
+       
   }
-  deleteSth(key){
-    firebase.database().ref().child('/users/'+key+'/').remove();
-}
+  addTask(): void {
+    const dialogRef = this.dialog.open(FormModalComponent, {
+      width: '250px',
+        });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.taskTitle = result.title;
+      this.taskDescription=result.description;
+      this.dataService.writeUserTable(this.userId,this.tableParent,this.taskTitle,this.taskTitle,this.taskDescription);
+      console.log(result);
+    });
+  }
   logout() {
     this.authService.logout() 
       .then(() => this.router.navigate(['/login']));
@@ -43,6 +62,7 @@ export class DashboardComponent implements OnInit{
   public getDogImage(){
     this.http.get(`https://dog.ceo/api/breeds/image/random`).subscribe((data)=>{
       this.image= data['message']; 
+      console.log(this.taskTitle);
   })
   }
   public getArticles(){
@@ -50,6 +70,7 @@ export class DashboardComponent implements OnInit{
       this.articles= data['articles']; 
   })
   }
-  
-
+  delete(item) {
+    this.dataService.removeData(this.userId,this.tableParent,item);
+  }
   }

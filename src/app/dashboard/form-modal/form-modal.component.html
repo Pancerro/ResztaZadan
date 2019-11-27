@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Hi</h1>
+<div mat-dialog-content>
+    <div class="addTask">
+        <form #taskForm="ngForm">
+            <div ngModelGroup="task">
+                <div class="task-title">
+                    <p>Title<input type="text" placeholder="Title" required name="title" ngModel></p>
+                </div>
+                <div class="task-description">
+                    <p>Description<input type="text" placeholder="Description" required name="description" ngModel></p>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="false">No Thanks</button>
+    <button mat-button [mat-dialog-close]="taskForm.value.task" cdkFocusInitial>Ok</button>
+</div>

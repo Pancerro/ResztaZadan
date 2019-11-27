@@ -16,17 +16,20 @@
             <button (click)="logout()">LOGOUT</button>
             <button (click)="getDogImage()">Dog Image</button>
             <button (click)="getArticles()">Article</button>
+            <button mat-button (click)="addTask()">Add task</button>
             <nav>
                 <h1>Menu nawigacyjne</h1>
             </nav>
         </header>
         <main>
+            <div *ngFor="let kanban of kanbans | async">
+                <button (click)="delete(kanban)">[x]</button>
+                <h3> TaskTitle: {{kanban.title}}</h3>
+                <h3> TaskDescription: {{kanban.description}}</h3>
+            </div>
             <div *ngFor="let user of users | async">
                 <h3> Witaj {{user.username}}</h3>
                 <h3> Twoj mail to: {{user.email}}</h3>
-            </div>
-            <div *ngFor="let title of table | async">
-                <h3> Tytul: {{title.title}}</h3>
             </div>
             <h1>głowne cialo strony</h1>
             <div> <img src={{image}}></div>

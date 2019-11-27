@@ -6,13 +6,12 @@ import * as firebase from 'firebase';
   providedIn: 'root'
 })
 export class DataService {
-  getUsersUpdate(userId: string, name: string) {
-    throw new Error("Method not implemented.");
-  }
   constructor(public db:AngularFireDatabase) {
    }
-  
-   getUserInfo(userId,tableparent){
+   removeData(userId,tableparent,remove_item){
+    return this.db.list('/users/'+userId+'/'+tableparent).remove(remove_item);
+  }
+   getDate(userId,tableparent){
      return this.db.list('/users/'+userId+'/'+tableparent).valueChanges();
    }
    userNameUpdate(userId,name){
@@ -24,21 +23,15 @@ export class DataService {
   userEmailUpdate(userId,email){
     return this.db.object('users/'+userId+'/userInfo').update({email: email})
   }
-   deleteUser(userId){
-     return this.db.list('users/'+userId).remove();
-   }
    writeUserData(userId,tableparent,tablechild,name,surname,email){
     firebase.database().ref('users/'+ userId+'/'+tableparent+'/'+tablechild).set({
       username:name,
       usersurname:surname,
       email:email
     });}
-    writeUserTable(userId,tableparent,tablechild,name,surname,email){
+    writeUserTable(userId,tableparent,tablechild,title,description){
       firebase.database().ref('users/'+ userId+'/'+tableparent+'/'+tablechild).set({
-        title:name,
-        description:surname,
-        active:email
+        title:title,
+        description:description
       });}
-     // console.log(this.db.list('users/').update(this.userId,{username: 'Adrian'}));
-  // console.log(this.db.list('users/'+this.userId).remove('usersurname'));
 }
