@@ -8,14 +8,18 @@ html {
     height: 100%;
 }
 
+body {
+    min-height: 100%;
+    position: relative;
+}
+
 #middle {
-    padding: 10px;
-    padding-bottom: auto;
+    padding: 30px;
 }
 
 footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: auto;
+    height: 30px;
 }

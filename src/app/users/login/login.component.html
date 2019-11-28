@@ -1,6 +1,6 @@
 <div class="center">
     <h1> Sign In! or <u><a (click)="register()">Register!</a></u></h1>
-    <form class="form" #loginForm="ngForm" (ngSubmit)="login(loginForm.value.loginModelGroup)">
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value.loginModelGroup)">
         <div class="matForm" ngModelGroup="loginModelGroup">
             <mat-form-field>
                 <p><input matInput type="text" placeholder="email" name="email" required ngModel></p>
@@ -10,17 +10,22 @@
                 <p><input matInput type="password" placeholder="password" name="password" required ngModel></p>
                 <mat-error>Password is Mandatory</mat-error>
             </mat-form-field>
-            <div>
-                <button type="submit" mat-stroked-button color="primary">Login</button>
-                <br>
-                <button type="button" mat-stroked-button color="primary" (click)="resetPasswords()"> Reset password</button>
-            </div>
+        </div>
+        <div>
+            <button type="submit" class="button" mat-stroked-button color="primary">Login</button>
+            <br>
+            <button type="button" class="button" mat-stroked-button color="primary" (click)="resetPasswords()"> Reset password</button>
         </div>
     </form>
+
     <br>
-    <button type="button" mat-stroked-button color="primary" (click)="googleAuth()">                  
-        <img width="20px" alt="Google Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-         Login with Google
+    <div>
+        <button type="button" class="buttonGoogle" mat-stroked-button color="primary" (click)="googleAuth()">                  
+            <img width="20px" alt="Google Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+             Login with Google
     </button>
+    </div>
+    <br>
     <h3 style="color: red;">{{ info }}</h3>
+
 </div>
