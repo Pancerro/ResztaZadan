@@ -1,16 +1,15 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import * as firebase from 'firebase';
 import { DataService } from 'src/app/services/data.service';
-import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   credentials = {
     email: '',
     password: ''
@@ -20,7 +19,6 @@ export class RegisterComponent implements OnInit {
   constructor( private router: Router,
     private authService: AuthService,
     private dateService: DataService) { }
-  ngOnInit() {}
   login():void{
     this.router.navigate(['login']);
   }

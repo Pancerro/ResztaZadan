@@ -12,25 +12,24 @@ export class LoginComponent {
     email: '',
     password: ''
   }
-
   info:String = '';
-
   constructor(
     private router: Router,
     private authService: AuthService
     ) {}
-
-  login() {
+  login(loginForm):void {
+    this.credentials.email=loginForm.email;
+    this.credentials.password=loginForm.password
     this.authService.login(this.credentials)
       .then(() => this.router.navigate(['/dashboard']))
       .catch(err => this.info = 'WRONG EMAIL OR PASSWORDS');
   }
-  googleAuth(){
+  googleAuth():void{
     this.authService.googleAuth()
     .then(() => this.router.navigate(['/dashboard']))
       .catch(err => console.log(err.message));
   }
-  resetPasswords(){
+  resetPasswords():void{
     this.authService.resetPassword(this.credentials)
     .then(() => this.info = 'CHECK YOUR E-MAIL')
       .catch(err => console.log(err.message));
