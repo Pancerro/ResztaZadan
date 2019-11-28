@@ -1,92 +1,33 @@
-<!doctype html>
-<html>
+<div class="textCenter" *ngFor="let user of users | async">
+    <h1> Welcome {{user.username}}</h1>
+    <h3> Your email: {{user.email}}</h3>
+    <p><button mat-stroked-button color="primary" (click)="logout()">LOGOUT</button>
+        <button mat-stroked-button color="primary" (click)="addTask()">Add task</button></p>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Pierwsze zadanie </title>
-    <meta name="keywords" content="strona,zadania,ktos_mi_kazal" />
-    <meta name="description" content="Zadanie ze studiow" />
-    <meta name="author" content="Adrian Ławecki" />
-</head>
-
-<body>
-    <div class="pojemnik">
-        <header>
-            <h1>naglowek</h1>
-            <button (click)="logout()">LOGOUT</button>
-            <button (click)="getDogImage()">Dog Image</button>
-            <button (click)="getArticles()">Article</button>
-            <button mat-button (click)="addTask()">Add task</button>
-            <nav>
-                <h1>Menu nawigacyjne</h1>
-            </nav>
-        </header>
-        <main>
-            <div *ngFor="let kanban of kanbans | async">
-                <button (click)="delete(kanban.title)">[x]</button>
-                <h3> TaskTitle: {{kanban.title}}</h3>
-                <h3> TaskDescription: {{kanban.description}}</h3>
-            </div>
-            <div *ngFor="let user of users | async">
-                <h3> Witaj {{user.username}}</h3>
-                <h3> Twoj mail to: {{user.email}}</h3>
-            </div>
-            <h1>głowne cialo strony</h1>
-            <div> <img src={{image}}></div>
-            <div *ngFor="let article of articles">
-                <h2>{{article.title}}</h2>
-                <h3> {{article.description}}</h3>
-                <a href="{{article.url}}">Read full article</a>
-            </div>
-            <section>
-                <article>
-                    <h3>artykul</h3>
-                    <div class="container">
-                        <img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="Snow" style="width:100%;">
-                        <div class="bottom-left">Bottom Left</div>
-                        <div class="top-left">Top Left</div>
-                        <div class="top-right">Top Right</div>
-                        <div class="bottom-right">Bottom Right</div>
-                        <div class="centered">Centered</div>
-                    </div>
-                    <br>
-                    <div class="pagination">
-                        <a routerLink="/dashboard">&laquo;</a>
-                        <a routerLink="/dashboard">1</a>
-                        <a class="active" routerLink="/dashboard">2</a>
-                        <a routerLink="/dashboard">3</a>
-                        <a routerLink="/dashboard">4</a>
-                        <a routerLink="/dashboard">5</a>
-                        <a routerLink="/dashboard">6</a>
-                        <a routerLink="/dashboard">&raquo;</a>
-                    </div>
-                    <br>
-                    <!-- Rectangular switch -->
-                    <label class="switch">
-        <input type="checkbox">
-        <span class="slider"></span>
-      </label>
-                    <br>
-                    <!-- Rounded switch -->
-                    <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-                    <p> <a (click)="dashboard()">Kliknij by przejsc do drugiej strony</a></p>
-                </article>
-            </section>
-
-        </main>
-        <aside>
-            <h1>menu boczne</h1>
-            <div class="loader"></div>
-            <br>
-            <button class="button">Click Me</button>
-        </aside>
-        <footer>
-            <h1>stopka</h1>
-        </footer>
+    <div class="taskList" *ngFor="let list of lists | async">
+        <h3><button (click)="delete(list.title)" class="list_button" mat-mini-fab color="warn"></button> TaskTitle: {{list.title}}
+            <button (click)="update(list.title)" class="list_button" mat-mini-fab color="primary"></button></h3>
+        <p> TaskDescription: {{list.description}}</p>
     </div>
-</body>
+</div>
+<mat-grid-list cols="3" rowHeight="100px">
+    <mat-grid-tile [colspan]="3" [rowspan]="1">
+        <button mat-stroked-button color="primary" (click)="getDogImage()"> Get Dog Image</button>
+        <button mat-stroked-button color="primary" (click)="getArticles()"> Get Article</button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="4">
+        <div> <img width="500px;" height="400px;" *ngIf="image" src={{image}}></div>
 
-</html>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="4"><img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="pancerniak" style="width:500px; height: 400px;"></mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="4">
+        <div *ngFor="let article of articles">
+            <h2>{{article.title}}</h2>
+            <h3> {{article.description}}</h3>
+            <a href="{{article.url}}">Read full article</a>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="1">
+        <p> <a (click)="dashboard()">Click to go to the second page </a></p>
+    </mat-grid-tile>
+</mat-grid-list>

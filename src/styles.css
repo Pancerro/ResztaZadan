@@ -3,3 +3,29 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background: linear-gradient(to right, red, orange, yellow, lime, blue, purple, fuchsia);
 }
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    position: relative;
+}
+
+#middle {
+    margin-bottom: 10px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10px;
+}

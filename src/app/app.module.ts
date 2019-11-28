@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule,  MatDialogModule,MatInputModule, MatButtonModule} from '@angular/material';
 import { FormModalComponent } from './dashboard/form-modal/form-modal.component';
+import {MatGridListModule} from '@angular/material/grid-list';
  
 @NgModule({
   imports: [ 
@@ -34,7 +35,8 @@ import { FormModalComponent } from './dashboard/form-modal/form-modal.component'
     MatFormFieldModule,
     MatDialogModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule
 
   ],
   declarations: [ AppComponent, LoginComponent, DashboardComponent, DashboardstwoComponent, RegisterComponent, WelcomeSiteComponent,FormModalComponent],

@@ -8,7 +8,6 @@ import { Observable} from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 import { MatDialog } from '@angular/material';
 import { FormModalComponent } from '../form-modal/form-modal.component';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -20,7 +19,7 @@ export class DashboardComponent implements OnInit{
   public articles;
   tableParent="Do";
   users:Observable<any[]>;
-  kanbans:Observable<any[]>;
+  lists:Observable<any[]>;
   dialogValue:string; 
   sendValue:string;
   userId = firebase.auth().currentUser.uid;
@@ -33,10 +32,10 @@ export class DashboardComponent implements OnInit{
     private http:HttpClient,
     private dataService: DataService,
     public db:AngularFireDatabase,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {
         this.users=dataService.getDate(this.userId,'userInfo');
-        this.kanbans=this.dataService.getDate(this.userId,this.tableParent);
+        this.lists=this.dataService.getDate(this.userId,this.tableParent);
        
   }
   addTask(): void {
@@ -45,7 +44,6 @@ export class DashboardComponent implements OnInit{
         });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       this.taskTitle = result.title;
       this.taskDescription=result.description;
       this.dataService.writeUserTable(this.userId,this.tableParent,this.taskTitle,this.taskTitle,this.taskDescription);
@@ -68,7 +66,11 @@ export class DashboardComponent implements OnInit{
       this.articles= data['articles']; 
   })
   }
-  delete(removeitem) {
-    this.dataService.removeData(this.userId,this.tableParent,removeitem);
+  delete(removeItem) {
+    this.dataService.removeData(this.userId,this.tableParent,removeItem);
+  }
+  update(updateItem){
+    this.addTask()
+    this.delete(updateItem);
   }
   }
