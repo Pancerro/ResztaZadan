@@ -14,15 +14,15 @@ import { FormModalComponent } from '../form-modal/form-modal.component';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit{
-  API_KEY='9b43198568fc4738bd5e4eccb6d24c20';
+  private API_KEY='9b43198568fc4738bd5e4eccb6d24c20';
   public image:String;
   public articles;
-  tableParent="Do";
+  tableParent:String="Do";
   users:Observable<any[]>;
   lists:Observable<any[]>;
   dialogValue:string; 
   sendValue:string;
-  userId = firebase.auth().currentUser.uid;
+  private userId = firebase.auth().currentUser.uid;
   taskTitle: string;
   taskDescription:string;
   ngOnInit(){}

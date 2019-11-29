@@ -1,6 +1,3 @@
-<!doctype html>
-<html>
-
 <head>
     <meta charset="UTF-8">
     <title>Pierwsze zadanie </title>
@@ -10,117 +7,61 @@
 </head>
 
 <body>
-    <div class="pojemnik">
-        <header>
-            <a routerLink="/dashboard"><img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="logo" width="75" height="75"></a><br>
-            <button (click)="logout()">LOGOUT</button>
-            <nav>
-                <h4 id="naglowek"> Dzien Dobry! </h4>
-                <h4>Menu nawigacyjne</h4>
-
-                <ol>
-                    <li>
-                        Opcja 1
-                        <ul>
-                            <li><a routerLink="/dashboardtwo">Kto </a></li>
-                            <li><a routerLink="/dashboardtwo">lubi</a></li>
-                            <li><a routerLink="/dashboardtwo">pancernki?</a></li>
-                            <li><a routerLink="/dashboardtwo">Ja!</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a routerLink="/dashboardtwo">Opcja 2</a>
-                    </li>
-                    <li>
-                        Opcja 3
-                        <ul>
-                            <li><a routerLink="/dashboardtwo">Ale</a></li>
-                            <li><a routerLink="/dashboardtwo">czy</a></li>
-                            <li><a routerLink="/dashboardtwo">napewno?</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        Opcja 4
-                        <ul>
-                            <li><a routerLink="/dashboardtwo">No</a></li>
-                            <li><a routerLink="/dashboardtwo">nie wiem...</a></li>
-                        </ul>
-                    </li>
-                </ol>
-            </nav>
-        </header>
-        <main>
-            <h1>głowne cialo strony</h1>
-            <section>
-                <article>
-                    <h3><cite>Artykul</cite></h3>
-                    <div class="display_block" style="background-color:black;">
-                        <p>W tym akapicie jest link do strony glownej <br> <a (click)="dashboard()">Kliknij by przejsc do strony glownej</a></p>
-                    </div>
-                    <div class="display_block" style="background-color:red;">
-                        <blockquote><em><q>Nie sądzę, byś kiedykolwiek<span style="color:green;"> powinien wstydzić się</span> czy obawiać tego kim
-                            jesteś, ani tego co dzieje się w twoim życiu. Życie jest dobre. Człowieku,
-                            możesz czuć się jak ofiara cały czas, lub podnieść swój tyłek i zrobić to,
-                            co chcesz zrobić</q></em></blockquote>
-                    </div>
-                    <hr/>
-                    <button class="accordion">Section 1</button>
-                    <div class="panel">
-                        <p>Lorem ipsum...</p>
-                    </div>
-
-                    <button class="accordion">Section 2</button>
-                    <div class="panel">
-                        <p>Lorem ipsum...</p>
-                    </div>
-
-                    <button class="accordion">Section 3</button>
-                    <div class="panel">
-                        <p>Lorem ipsum...</p>
-                    </div>
-                </article>
-            </section>
-
-            <button id="myBtn">Open Modal</button>
-
-            <div id="myModal" class="modal">
-
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>Some text in the Modal..</p>
+    <header>
+        <a routerLink="/dashboard"><img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="logo" width="75" height="75" *ngIf="appearLogo"></a><br>
+        <button mat-button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">Action</button>
+        <mat-menu #menu="matMenu">
+            <button (click)="logout()" mat-menu-item>Logout</button>
+            <button (click)="dashboard()" mat-menu-item>Return to main page</button>
+        </mat-menu>
+        <button mat-button mat-stroked-button color="primary" [matMenuTriggerFor]="appearMenu">Appear!</button>
+        <mat-menu #appearMenu="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="appears">Appear!</button>
+        </mat-menu>
+        <mat-menu #appears="matMenu">
+            <button mat-menu-item (click)="appearImageMethod()">Appear image!</button>
+            <button mat-menu-item (click)="appearLogoMethod()">Appear logo</button>
+        </mat-menu>
+        <button mat-stroked-button color="primary" (click)="logout()">LOGOUT</button>
+    </header>
+    <main>
+        <h1>Welcome!</h1>
+        <section>
+            <article>
+                <h3>Article</h3>
+                <div>
+                    <p><a (click)="dashboard()">Click to go to the main page </a></p>
+                </div>
+                <hr/>
+                <button class="accordion">Section 1</button>
+                <div class="panel">
+                    <p>Lorem ipsum...</p>
                 </div>
 
-            </div>
-            <div class="container">
-                <img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="Avatar" class="image">
-                <div class="overlay">
-                    <div class="text">Hello World</div>
+                <button class="accordion">Section 2</button>
+                <div class="panel">
+                    <p>Lorem ipsum...</p>
                 </div>
-            </div>
 
-        </main>
-        <aside>
-            <h4><b>Menu boczne</b></h4>
-            <p>Kliknij w przycisk a zadziala sie magia </p>
-            <div id="myDIV">
-                <p> Element z Divem </p>
-            </div>
-            <p><button (click)="myFunction()">Kliknij tu</button></p>
-            <button onclick="document.getElementById('myInput').value = ''">Clear input field</button>
-            <input type="text" value="Blabla" id="myInput">
-            <!-- Draggable DIV -->
-            <div id="mydiv">
-                <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
-                <div id="mydivheader">Click here to move</div>
-                <p>Move</p>
-                <p>this</p>
-                <p>DIV</p>
-            </div>
-        </aside>
-        <footer>
-            <h5><small>stopka</small></h5>
-        </footer>
-    </div>
+                <button class="accordion">Section 3</button>
+                <div class="panel">
+                    <p>Lorem ipsum...</p>
+                </div>
+            </article>
+            <hr/>
+        </section>
+        <div class="container">
+            <img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="Avatar" class="image" *ngIf="appearImage">
+            <br>
+        </div>
+
+    </main>
+    <aside>
+        <h4><b>Menu boczne</b></h4>
+        <p>Kliknij w przycisk a zadziala sie magia </p>
+        <div id="myDIV">
+            <p> Element z Divem </p>
+        </div>
+        <p><button (click)="myFunction()">Kliknij tu</button></p>
+    </aside>
 </body>
-
-</html>

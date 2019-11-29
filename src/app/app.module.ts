@@ -19,7 +19,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule,  MatDialogModule,MatInputModule, MatButtonModule} from '@angular/material';
 import { FormModalComponent } from './dashboard/form-modal/form-modal.component';
 import {MatGridListModule} from '@angular/material/grid-list';
- 
+import {MatMenuModule} from '@angular/material/menu';
 @NgModule({
   imports: [ 
     MatSliderModule,
@@ -36,7 +36,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    MatMenuModule
 
   ],
   declarations: [ AppComponent, LoginComponent, DashboardComponent, DashboardstwoComponent, RegisterComponent, WelcomeSiteComponent,FormModalComponent],
