@@ -1,7 +1,6 @@
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import * as firebase from 'firebase';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -28,7 +27,7 @@ export class RegisterComponent {
         this.credentials.password=registerForm.password;
       this.authService.register(this.credentials)
       .then(() => this.info ='You failed to register')
-      .then(()=>this.dateService.writeUserData(firebase.auth().currentUser.uid,'userInfo','info',registerForm.name,registerForm.surname,registerForm.email))
+      .then(()=>this.dateService.writeUserData(this.authService.user.uid,'userInfo','info',registerForm.name,registerForm.surname,this.authService.user.email))
     }
   }
   matchingPasswords(repeatPassword,password):boolean{

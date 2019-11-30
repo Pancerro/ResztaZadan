@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import * as firebase from 'firebase';
 import {HttpClient} from '@angular/common/http';
 import { AngularFireDatabase,AngularFireList} from 'angularfire2/database';
 import { Observable} from 'rxjs';
@@ -22,9 +21,10 @@ export class DashboardComponent implements OnInit{
   lists:Observable<any[]>;
   dialogValue:string; 
   sendValue:string;
-  private userId = firebase.auth().currentUser.uid;
+  private userId =this.authService.user.uid;
   taskTitle: string;
   taskDescription:string;
+  verifyEmail=this.authService.user.emailVerified;
   ngOnInit(){}
   constructor(
     private router: Router,
@@ -57,6 +57,7 @@ export class DashboardComponent implements OnInit{
     this.router.navigate(['/dashboardtwo']);
   }
   public getDogImage(){
+    console.log(this.authService.user.emailVerified);
     this.http.get(`https://dog.ceo/api/breeds/image/random`).subscribe((data)=>{
       this.image= data['message']; 
   })
@@ -73,4 +74,8 @@ export class DashboardComponent implements OnInit{
     this.addTask()
     this.delete(updateItem);
   }
+  repeatVerifyEmail()
+    {
+      this.authService.SendVerificationMail();
+    }
   }

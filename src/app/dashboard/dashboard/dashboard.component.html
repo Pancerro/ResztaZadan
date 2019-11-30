@@ -1,32 +1,39 @@
-<div class="textCenter" *ngFor="let user of users | async">
-    <h1> Welcome {{user.username}}</h1>
-    <h3> Your email: {{user.email}}</h3>
-    <p><button mat-stroked-button color="primary" (click)="logout()">LOGOUT</button>
-        <button mat-stroked-button color="primary" (click)="addTask()">Add task</button></p>
+<div *ngIf="verifyEmail">
+    <div class="textCenter" *ngFor="let user of users | async">
+        <h1> Welcome {{user.username}}</h1>
+        <h3> Your email: {{user.email}}</h3>
+        <p><button mat-stroked-button color="primary" (click)="logout()">LOGOUT</button>
+            <button mat-stroked-button color="primary" (click)="addTask()">Add task</button></p>
 
-    <div class="taskList" *ngFor="let list of lists | async">
-        <h3><button (click)="delete(list.title)" class="list_button" mat-mini-fab color="warn"></button> TaskTitle: {{list.title}}
-            <button (click)="update(list.title)" class="list_button" mat-mini-fab color="primary"></button></h3>
-        <p> TaskDescription: {{list.description}}</p>
-    </div>
-</div>
-<mat-grid-list cols="3" rowHeight="100px">
-    <mat-grid-tile [colspan]="3" [rowspan]="1">
-        <button mat-stroked-button color="primary" (click)="getDogImage()"> Get Dog Image</button>
-        <button mat-stroked-button color="primary" (click)="getArticles()"> Get Article</button>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="4">
-        <div> <img width="100%;" height="100%;" *ngIf="image" src={{image}}></div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="4"><img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="pancerniak" width="90%;" height="100%;"></mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="4">
-        <div class="articleClass" *ngFor="let article of articles">
-            <h2>{{article.title}}</h2>
-            <h3> {{article.description}}</h3>
-            <a href="{{article.url}}">Read full article</a>
+        <div class="taskList" *ngFor="let list of lists | async">
+            <h3><button (click)="delete(list.title)" class="list_button" mat-mini-fab color="warn"></button> TaskTitle: {{list.title}}
+                <button (click)="update(list.title)" class="list_button" mat-mini-fab color="primary"></button></h3>
+            <p> TaskDescription: {{list.description}}</p>
         </div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="1">
-        <p> <a (click)="dashboard()">Click to go to the second page </a></p>
-    </mat-grid-tile>
-</mat-grid-list>
+    </div>
+    <mat-grid-list cols="3" rowHeight="100px">
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+            <button mat-stroked-button color="primary" (click)="getDogImage()"> Get Dog Image</button>
+            <button mat-stroked-button color="primary" (click)="getArticles()"> Get Article</button>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="4">
+            <div> <img width="100%;" height="100%;" *ngIf="image" src={{image}}></div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="4"><img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="pancerniak" height="100%" width="90%"></mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="4">
+            <div class="articleClass" height="100%" width="100%" *ngFor="let article of articles">
+                <h2>{{article.title}}</h2>
+                <h3> {{article.description}}</h3>
+                <a href="{{article.url}}">Read full article</a>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+            <p> <a (click)="dashboard()">Click to go to the second page </a></p>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+<div class="textCenter" *ngIf="!verifyEmail">
+    <h1>CHECK YOUR EMAIL AND CLICK VERIFY!</h1>
+    <p>or click</p>
+    <button (click)="repeatVerifyEmail()" class="button" mat-stroked-button color="primary">Send repeat verify email</button>
+</div>

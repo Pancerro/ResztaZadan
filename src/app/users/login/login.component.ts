@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -15,7 +16,8 @@ export class LoginComponent {
   info:String = '';
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private dateService: DataService
     ) {}
   login(loginForm):void {
     this.credentials.email=loginForm.email;
@@ -26,7 +28,9 @@ export class LoginComponent {
   }
   googleAuth():void{
     this.authService.googleAuth()
-    .then(() => this.router.navigate(['/dashboard']))
+    .then(() => this.router.navigate(['/dashboard'])
+    .then(()=>this.dateService.writeUserData(this.authService.user.uid,'userInfo','info',"","",this.authService.user.email))
+    .then(()=>this.authService.SendVerificationMail))
       .catch(err => console.log(err.message));
   }
   resetPasswords():void{

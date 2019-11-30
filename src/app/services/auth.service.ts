@@ -9,15 +9,14 @@ export interface Credentials {
   password: string;
 }
 
-
 @Injectable({providedIn: 'root'})
 export class AuthService {
   readonly authState$: Observable<User | null> = this.fireAuth.authState;
-  constructor(private router: Router,private fireAuth: AngularFireAuth) {}
+  constructor(private router: Router,
+    private fireAuth: AngularFireAuth) {}
   get user(): User | null {
     return this.fireAuth.auth.currentUser;
   }
-
   login({email, password}: Credentials) {
     return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
   }
@@ -29,7 +28,7 @@ export class AuthService {
       window.alert('You can now log in!');
       this.router.navigate(['login']);
     }).catch((error) => {
-      window.alert(error.message)
+      window.alert(error.message);
     })
   }
   SendVerificationMail() {
@@ -44,12 +43,12 @@ export class AuthService {
     AuthLogin(provider) {
       return this.fireAuth.auth.signInWithPopup(provider)
       .then((result) => {
-          console.log('You have been successfully logged in!')
+          console.log('You have been successfully logged in!');
       }).catch((error) => {
-          console.log(error)
+          console.log(error);
       })
     }
   resetPassword({email}:Credentials){
-    return this.fireAuth.auth.sendPasswordResetEmail(email)
+    return this.fireAuth.auth.sendPasswordResetEmail(email);
   }
 }
