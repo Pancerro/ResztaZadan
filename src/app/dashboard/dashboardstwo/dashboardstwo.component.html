@@ -8,8 +8,6 @@
 
 <body>
     <header>
-        <button mat-stroked-button color="primary" (click)="getUsers()">Get users</button>
-        <button mat-stroked-button color="primary" (click)="addUsers()">Delete users</button>
         <a routerLink="/dashboard"><img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="logo" width="75" height="75" *ngIf="appearLogo"></a><br>
         <button mat-button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">Action</button>
         <mat-menu #menu="matMenu">
@@ -28,10 +26,58 @@
     </header>
     <main>
         <h1>Welcome!</h1>
-        <div *ngFor="let user of users">
-            <p> User Description: {{user.id}}</p>
-            <p> User Description: {{user.name}}</p>
-            <p> User Description: {{user.desc}}</p>
+        <div class="smartphoneForm">
+            <form #addForm="ngForm" (ngSubmit)="addNewSmartphone(addForm.value.addModelGroup)">
+                <div class="matForm" ngModelGroup="addModelGroup">
+                    <mat-form-field>
+                        <p><input matInput type="text" placeholder="name" name="name" required ngModel></p>
+                        <mat-error>Name is Mandatory</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <p><input matInput type="text" placeholder="price" name="price" required ngModel></p>
+                        <mat-error>Price is Mandatory</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <p><input matInput type="text" placeholder="description" name="description" required ngModel></p>
+                        <mat-error>Description is Mandatory</mat-error>
+                    </mat-form-field>
+                    <button type="submit" class="button" mat-stroked-button color="primary">Add smartphone!</button>
+                </div>
+            </form>
+            <form #updateForm="ngForm" (ngSubmit)="updateSmartphone(updateForm.value.updateModelGroup)">
+                <div class="matForm" ngModelGroup="updateModelGroup">
+                    <mat-form-field>
+                        <p><input matInput type="text" placeholder="id" name="id" required ngModel></p>
+                        <mat-error>ID is Mandatory</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <p><input matInput type="text" placeholder="name" name="name" required ngModel></p>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <p><input matInput type="text" placeholder="price" name="price" required ngModel></p>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <p><input matInput type="text" placeholder="description" name="description" required ngModel></p>
+                    </mat-form-field>
+                    <button type="submit" class="button" mat-stroked-button color="primary">Update smartphone!</button>
+                </div>
+            </form>
+            <form #deleteForm="ngForm" (ngSubmit)="deleteSmartphone(deleteForm.value.deleteModelGroup)">
+                <div class="matForm" ngModelGroup="deleteModelGroup">
+                    <mat-form-field>
+                        <p><input matInput type="text" placeholder="id" name="id" required ngModel></p>
+                        <mat-error>ID is Mandatory</mat-error>
+                    </mat-form-field>
+                    <button type="submit" class="button" mat-stroked-button color="primary">Delete smartphone!</button>
+                </div>
+            </form>
+        </div>
+        <p>SMARTPHONE LIST:</p>
+        <div class="classList" *ngFor="let smartphone of smartphones">
+            <p> Smartphone ID: {{smartphone.id}}</p>
+            <p> Smartphone name: {{smartphone.name}}</p>
+            <p> Smartphone price: {{smartphone.price}}</p>
+            <button (click)="deleteSmartphoneInList(smartphone.id)" mat-mini-fab color="warn">X</button>
         </div>
         <section>
             <article>

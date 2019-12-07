@@ -52,3 +52,11 @@ button:hover {
     margin: 10px;
     margin-top: -10px;
 }
+
+.classList {
+    text-align: center;
+}
+
+.smartphoneForm {
+    margin-left: 10px;
+}

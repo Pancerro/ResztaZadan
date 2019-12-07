@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from 'src/app/services/api.service';
-export interface User {
-  id: string;
-  name: string;
-  desc: string;
+import { Observable, VirtualTimeScheduler } from 'rxjs';
+export class Smartphone {
+  constructor(
+    public id:string,
+    public name: string,
+    public desc: string,
+    public price: number,
+    public updated: string) {}
 }
-
 @Component({
   selector: 'app-dashboardstwo',
   templateUrl: './dashboardstwo.component.html',
@@ -29,15 +32,19 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 }
-users: User[] = [];
-user:User;
-headers;
+public smartphones: Smartphone[] = [];
   constructor(
     private router: Router,
     private authService: AuthService,
-    private api:ApiService
+    private api:ApiService,
   ) {
+    this.api.getProducts().subscribe((res : Smartphone[])=>{
+        this.smartphones = res;
+    });
+
   }
+  
+
   myFunction():void {
     var para = document.createElement("P");
     para.innerHTML = "To jest paragraf.";
@@ -58,21 +65,17 @@ headers;
   dashboard():void{
     this.router.navigate(['/dashboard']);
   }
-  getUsers() {
-    this.api.getUsers()
-    .subscribe(resp => {
-      const keys = resp.headers.keys();
-      this.headers = keys.map(key =>
-        `${key}: ${resp.headers.get(key)}`);
-  
-      for (const data of resp.body) {
-        this.users.push(data);
-      }
-    });
+  addNewSmartphone(addForm):void{
+    this.api.addProducts(addForm)
+  .subscribe(smartphone => this.smartphones.push());
   }
-  addUsers() {
-  
-    this.api.addUser(this.user);
-
+  deleteSmartphone(deleteForm):void{
+  this.api.deleteProducts(deleteForm.id).subscribe();
+  }
+  deleteSmartphoneInList(deleteID):void{
+    this.api.deleteProducts(deleteID).subscribe();
+    }
+  updateSmartphone(updateForm):void{
+  this.api.updateProducts(updateForm.id,updateForm).subscribe();
   }
 }

@@ -1,43 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { User } from '../dashboard/dashboardstwo/dashboardstwo.component';
-import { retry, catchError } from 'rxjs/operators';
-
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { Smartphone} from '../dashboard/dashboardstwo/dashboardstwo.component';
+import { VirtualTimeScheduler } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  
-  localUrl = 'assets/data/database.json';
   constructor(private http: HttpClient) { 
   }
-  getUsers(): Observable<HttpResponse<User[]>> {
-    return this.http.get<User[]>(
-      this.localUrl, { observe: 'response' });
-  }
-addUsers(user: User): Observable<Object>{
-    return this.http.post(this.localUrl, user);
+  baseUrl:string="http://localhost:3000"
+getProducts(){
+    return this.http.get(this.baseUrl + '/products');
 }
- 
-
-addUser(id,name,desc){
-this.http.put(this.localUrl,
-{
-"id":  id,
-"name": name,
-"description": desc
-})
-.subscribe(
-data  => {
-console.log("PUT Request is successful ", data);
-},
-error  => {
-console.log("Rrror", error);
+addProducts(smartphone:Smartphone){
+  return this.http.post(this.baseUrl+ '/products',smartphone)
 }
-);
+deleteProducts(id:Number){
+  return this.http.delete(this.baseUrl+ '/products/'+id)
 }
-
+updateProducts(id:Number,smartphone:Smartphone){
+  return this.http.put(this.baseUrl+ '/products/'+id,smartphone)
+}
  }
 
   
