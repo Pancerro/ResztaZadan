@@ -24,23 +24,6 @@ button:hover {
     color: red;
 }
 
-.accordion {
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-}
-
-.panel {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-}
-
 .container {
     position: relative;
     width: 50%;
@@ -53,10 +36,13 @@ button:hover {
     margin-top: -10px;
 }
 
-.classList {
-    text-align: center;
-}
-
 .smartphoneForm {
     margin-left: 10px;
+}
+
+.deleteButton {
+    margin-top: 10px;
+    margin-left: 80%;
+    height: 25px;
+    width: 25px;
 }

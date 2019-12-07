@@ -1,37 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from 'src/app/services/api.service';
-import { Observable, VirtualTimeScheduler } from 'rxjs';
 export class Smartphone {
   constructor(
     public id:string,
     public name: string,
-    public desc: string,
-    public price: number,
-    public updated: string) {}
+    public description: string,
+    public price: number) {}
 }
 @Component({
   selector: 'app-dashboardstwo',
   templateUrl: './dashboardstwo.component.html',
   styleUrls: ['./dashboardstwo.component.css']
 })
-export class DashboardstwoComponent implements OnInit{
-  ngOnInit(){
-    var acc = document.getElementsByClassName("accordion");
-    var      i;
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
-  });
-}
-}
+export class DashboardstwoComponent{
 public smartphones: Smartphone[] = [];
   constructor(
     private router: Router,
@@ -41,14 +24,18 @@ public smartphones: Smartphone[] = [];
     this.api.getProducts().subscribe((res : Smartphone[])=>{
         this.smartphones = res;
     });
-
   }
-  
-
   myFunction():void {
-    var para = document.createElement("P");
-    para.innerHTML = "To jest paragraf.";
-    document.getElementById("myDIV").appendChild(para);
+    var tr = document.createElement("tr");
+    var td = document.createElement("td");
+    td.innerHTML = this.smartphones[1].name;
+    tr.appendChild(td);
+    var tdd = document.createElement("td");
+    tdd.innerHTML = this.smartphones[1].description;
+    tr.appendChild(tdd);
+
+
+    document.getElementById("myTABLE").appendChild(tr);
   }
   appearLogo:Boolean=false;
   appearImage:Boolean=false;
@@ -68,14 +55,18 @@ public smartphones: Smartphone[] = [];
   addNewSmartphone(addForm):void{
     this.api.addProducts(addForm)
   .subscribe(smartphone => this.smartphones.push());
+  window.location.reload();
   }
   deleteSmartphone(deleteForm):void{
   this.api.deleteProducts(deleteForm.id).subscribe();
+  window.location.reload();
   }
   deleteSmartphoneInList(deleteID):void{
     this.api.deleteProducts(deleteID).subscribe();
+    window.location.reload();
     }
   updateSmartphone(updateForm):void{
   this.api.updateProducts(updateForm.id,updateForm).subscribe();
+  window.location.reload();
   }
 }

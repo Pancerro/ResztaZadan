@@ -72,32 +72,22 @@
                 </div>
             </form>
         </div>
-        <p>SMARTPHONE LIST:</p>
-        <div class="classList" *ngFor="let smartphone of smartphones">
-            <p> Smartphone ID: {{smartphone.id}}</p>
-            <p> Smartphone name: {{smartphone.name}}</p>
-            <p> Smartphone price: {{smartphone.price}}</p>
-            <button (click)="deleteSmartphoneInList(smartphone.id)" mat-mini-fab color="warn">X</button>
-        </div>
         <section>
             <article>
-                <h3>Article</h3>
                 <div>
                     <p><a (click)="dashboard()">Click to go to the main page </a></p>
                 </div>
                 <hr/>
-                <button class="accordion">Section 1</button>
-                <div class="panel">
-                    <p>Lorem ipsum...</p>
-                </div>
-                <button class="accordion">Section 2</button>
-                <div class="panel">
-                    <p>Lorem ipsum...</p>
-                </div>
-                <button class="accordion">Section 3</button>
-                <div class="panel">
-                    <p>Lorem ipsum...</p>
-                </div>
+                <p>SMARTPHONE LIST:</p>
+                <mat-expansion-panel *ngFor="let smartphone of smartphones ">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Smartphone name: {{smartphone.name}} <button class="deleteButton" (click)="deleteSmartphoneInList(smartphone.id)" mat-mini-fab color="warn"></button>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    Smartphone ID: {{smartphone.id}}<br> Smartphone price: {{smartphone.price}}<br> Smartphone description: {{smartphone.description}}<br>
+
+                </mat-expansion-panel>
             </article>
             <hr/>
         </section>
@@ -105,13 +95,14 @@
             <img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="Avatar" class="image" height="100%" width="100%" *ngIf="appearImage">
             <br>
         </div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLt7gw7g9vcOD8dGkHTuXryqdsQJX9c8L3" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </main>
     <aside>
-        <h4><b>Menu boczne</b></h4>
-        <p>Kliknij w przycisk a zadziala sie magia </p>
+        <h4><b>Side Menu</b></h4>
+        <p>Click the button and the magic will work!
+        </p>
         <div id="myDIV">
-            <p> Element z Divem </p>
+            <p> Table: </p>
+            <table border="6" id="myTABLE"> </table>
         </div>
         <p><button (click)="myFunction()">Kliknij tu</button></p>
     </aside>

@@ -1,3 +1,16 @@
 {
-  "products": []
+  "products": [
+    {
+      "name": "Adrian Ławecki",
+      "price": "hehe",
+      "description": "lepsze",
+      "id": 2
+    },
+    {
+      "name": "sdsds",
+      "price": "wdsssss",
+      "description": "lepsze",
+      "id": 3
+    }
+  ]
 }
