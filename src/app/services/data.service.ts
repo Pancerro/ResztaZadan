@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataService {
   constructor(public db:AngularFireDatabase) {
    }
@@ -12,7 +13,7 @@ export class DataService {
     return this.db.list('/users/'+userId+'/'+tableparent).remove(removeItem)
   }
    getDate(userId,tableparent){
-     return this.db.list('/users/'+userId+'/'+tableparent).valueChanges();
+     return this.db.list('/users/'+userId+'/'+tableparent).valueChanges()
    }
    userNameUpdate(userId,name){
     return this.db.object('users/'+userId+'/userInfo').update({username: name})

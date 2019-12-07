@@ -23,8 +23,8 @@ export class RegisterComponent {
   }
   register(registerForm):void {
     if(this.matchingPasswords(registerForm.repeatPassword,registerForm.password)==true  && this.captchaIsTrue()){
-        this.credentials.email=registerForm.email;
-        this.credentials.password=registerForm.password;
+      this.credentials.email=registerForm.email;
+      this.credentials.password=registerForm.password;
       this.authService.register(this.credentials)
       .then(() => this.info ='You failed to register')
       .then(()=>this.dateService.writeUserData(this.authService.user.uid,'userInfo','info',registerForm.name,registerForm.surname,this.authService.user.email))

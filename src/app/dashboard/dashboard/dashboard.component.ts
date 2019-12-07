@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit{
   private API_KEY='9b43198568fc4738bd5e4eccb6d24c20';
   public image:String;
   public articles;
-  tableParent:String="Do";
+  tableParent:string="Do";
   users:Observable<any[]>;
   lists:Observable<any[]>;
   dialogValue:string; 
@@ -34,9 +34,8 @@ export class DashboardComponent implements OnInit{
     public db:AngularFireDatabase,
     public dialog: MatDialog,
   ) {
-        this.users=dataService.getDate(this.userId,'userInfo');
-        this.lists=this.dataService.getDate(this.userId,this.tableParent);
-       
+        this.users=dataService.getDate(this.userId,"userInfo");
+        this.lists=this.dataService.getDate(this.userId,this.tableParent);    
   }
   addTask(): void {
     const dialogRef = this.dialog.open(FormModalComponent, {
@@ -49,32 +48,32 @@ export class DashboardComponent implements OnInit{
       this.dataService.writeUserTable(this.userId,this.tableParent,this.taskTitle,this.taskTitle,this.taskDescription);
     });
   }
-  logout() {
+  logout():void{
     this.authService.logout() 
       .then(() => this.router.navigate(['/login']));
   }
-  dashboard(){
+  dashboard():void{
     this.router.navigate(['/dashboardtwo']);
   }
-  public getDogImage(){
+  public getDogImage():void{
     console.log(this.authService.user.emailVerified);
     this.http.get(`https://dog.ceo/api/breeds/image/random`).subscribe((data)=>{
       this.image= data['message']; 
   })
   }
-  public getArticles(){
+  public getArticles():void{
     this.http.get(`https://newsapi.org/v2/top-headlines?country=pl&pageSize=1&apiKey=${this.API_KEY}`).subscribe((data)=>{
       this.articles= data['articles']; 
   })
   }
-  delete(removeItem) {
+  delete(removeItem):void {
     this.dataService.removeData(this.userId,this.tableParent,removeItem);
   }
-  update(updateItem){
+  update(updateItem):void{
     this.addTask()
     this.delete(updateItem);
   }
-  repeatVerifyEmail()
+  repeatVerifyEmail():void
     {
       this.authService.SendVerificationMail();
     }

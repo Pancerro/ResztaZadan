@@ -8,6 +8,8 @@
 
 <body>
     <header>
+        <button mat-stroked-button color="primary" (click)="getUsers()">Get users</button>
+        <button mat-stroked-button color="primary" (click)="addUsers()">Delete users</button>
         <a routerLink="/dashboard"><img src="http://bafka.ovh/wp-content/uploads/pancernik-1.jpg" alt="logo" width="75" height="75" *ngIf="appearLogo"></a><br>
         <button mat-button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">Action</button>
         <mat-menu #menu="matMenu">
@@ -26,6 +28,11 @@
     </header>
     <main>
         <h1>Welcome!</h1>
+        <div *ngFor="let user of users">
+            <p> User Description: {{user.id}}</p>
+            <p> User Description: {{user.name}}</p>
+            <p> User Description: {{user.desc}}</p>
+        </div>
         <section>
             <article>
                 <h3>Article</h3>
