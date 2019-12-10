@@ -14,7 +14,7 @@ export class AuthService {
   readonly authState$: Observable<User | null> = this.fireAuth.authState;
   constructor(private router: Router,
     private fireAuth: AngularFireAuth) {}
-  get user(): User | null {
+  getUser(): User | null {
     return this.fireAuth.auth.currentUser;
   }
   login({email, password}: Credentials) {
