@@ -16,7 +16,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-devkit/build-angular": "~0.803.13",
+    "@angular-devkit/build-angular": "~15.0.0",
     "@angular/animations": "~8.2.11",
     "@angular/cdk": "~8.2.3",
     "@angular/cli": "^8.3.19",
@@ -63,7 +63,7 @@
   "devDependencies": {
     "@angular/cli": "^8.3.19",
     "@angular/compiler-cli": "^8.2.14",
-    "@angular-devkit/build-angular": "~0.803.13",
+    "@angular-devkit/build-angular": "~15.0.0",
     "@angular/language-service": "~8.2.11",
     "@types/node": "~8.9.4",
     "@types/jasmine": "~3.3.8",
